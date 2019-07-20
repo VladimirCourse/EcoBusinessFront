@@ -57,11 +57,11 @@ class StartPageState extends State<StartPage> {
 
     bloc = StartPageBloc();
     plan = Plan();
-    plan.origin = 'LED';
-    plan.destination = 'HEL';
-    plan.days = 4;
-    plan.peopleCount = 5;
-    plan.date = Repository.dates[0];
+    // plan.origin = 'LED';
+    // plan.destination = 'HEL';
+    // plan.days = 4;
+    // plan.peopleCount = 5;
+    // plan.date = Repository.dates[0];
 
     fromBLoc = SelectBloc(
       onChange: (index) {
@@ -125,7 +125,7 @@ class StartPageState extends State<StartPage> {
                   padding: EdgeInsets.only(left: width * 0.3, right: width * 0.3, top: height * 0.15),
                   child: Column(
                     children: <Widget>[
-                      Text('Plan your business trip',
+                      Text('Plan business trip',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 40
