@@ -1,6 +1,8 @@
 import 'package:flutter_web/material.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'start_page.dart';
+
 import '../../widgets/text_fields/rounded_text_field.dart';
 import '../../widgets/text_fields/address_autocomplete.dart';
 import '../../widgets/buttons/main_button.dart';
@@ -89,9 +91,34 @@ class ResultPageState extends State<ResultPage> {
                                     plan: widget.plan,
                                   ),
                                   PlanEcoContainer(
-                                     width: width,
-                                     plan: widget.plan,
-                                   )
+                                    width: width,
+                                    plan: widget.plan,
+                                  ),
+                                  Container(
+                                    width: width * 0.25,
+                                    child: MainButton(
+                                      title: 'CHECK OUT',
+                                      onPressed: () {
+                                        Dialogs.showMessage(context, 'Check out', 'Coming soon!', 'PK');
+                                      },
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(top: 5)),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        DefaultRoute(builder: (context) => StartPage()),
+                                      );
+                                    },
+                                    child: Text('Skip to beginning',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: AppColors.orange
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(top: 15)),
                                 ],
                               ),
                             )
