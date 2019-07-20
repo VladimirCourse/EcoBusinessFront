@@ -44,7 +44,7 @@ class AccomodationPageBloc {
   }
 
   void load() async {
-    final hotelsLoaded = await Repository.hotels(plan.value.destination, plan.value.date);
+    final hotelsLoaded = await Repository.hotels(plan.value.destination, plan.value.date, plan.value.days);
     hotels.sink.add(hotelsLoaded);
   }
   

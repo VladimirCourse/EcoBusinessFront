@@ -56,7 +56,6 @@ class Repository {
       address: 'Saint Petersburg Airport'
     )
   };
-
   
   static Map<String, Point> trainToPoint = {
     'KZN': Point(
@@ -163,34 +162,7 @@ class Repository {
     ],
   };
 
-  // static Map<String, String> cityToIata = {
-  //   'Kazan, Russia': 'KZN',
-  //   'Moscow, Russia': 'MOW',
-  //   'Saint Petersburg, Russia': 'LED',
-  //   'Helsinki, Finland': 'HEL',
-  //   'Warsaw, Poland': 'WAW',
-  //   'Prague, Czech Republic': 'PRG',
-  //   'Berlin, Germany': 'BER',
-  // };
-
-  // static Map<String, List<String>> citiesGraph = {
-  //   'Kazan, Russia' : [
-  //     'Moscow, Russia'
-  //   ],
-  //   'Saint Petersburg, Russia' : [
-  //     'Helsinki, Finland'
-  //   ],
-  //   'Helsinki, Finland' : [
-  //     'Saint Petersburg, Russia'
-  //   ],
-  //   'Warsaw, Poland' : [
-  //     'Prague, Czech Republic',
-  //     'Berlin, Germany'
-  //   ],
-  //   'Prague, Czech Republic' : [
-  //     'Berlin, Germany'
-  //   ],
-  // };
+  static const String host = 'http://34.90.110.227:3001';
 
   static List<DateTime> dates = [
     DateTime(2019, 07, 27),
@@ -201,7 +173,7 @@ class Repository {
 
   static Future<List<Flight>> flights(String origin, String destination, DateTime date) async {
     final client = Client();
-    final url = 'http://localhost:3000/planner/flights?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
+    final url = '${host}/planner/flights?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
     final res = await client.get(Uri.encodeFull(url));
     if (res.statusCode == 200) {
       List body = json.decode(res.body);
@@ -221,7 +193,7 @@ class Repository {
 
   static Future<List<Bus>> buses(String origin, String destination, DateTime date) async {
     final client = Client();
-    final url = 'http://localhost:3000/planner/buses?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
+    final url = '${host}/planner/buses?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
     final res = await client.get(Uri.encodeFull(url));
     if (res.statusCode == 200) {
       List body = json.decode(res.body);
@@ -241,7 +213,7 @@ class Repository {
 
   static Future<List<Train>> trains(String origin, String destination, DateTime date) async {
     final client = Client();
-    final url = 'http://localhost:3000/planner/trains?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
+    final url = '${host}/planner/trains?origin=${origin}&destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
     final res = await client.get(Uri.encodeFull(url));
     if (res.statusCode == 200) {
       List body = json.decode(res.body);
@@ -262,7 +234,7 @@ class Repository {
 
   static Future<List<Car>> carsTransfer(String destination) async {
     final client = Client();
-    final url = 'http://localhost:3000/planner/transfer/cars?destination=${destination}';
+    final url = '${host}/planner/transfer/cars?destination=${destination}';
     final res = await client.get(Uri.encodeFull(url));
     if (res.statusCode == 200) {
       List body = json.decode(res.body);
@@ -282,9 +254,9 @@ class Repository {
   }
 
 
-  static Future<List<Accomodation>> hotels(String destination, DateTime date) async {
+  static Future<List<Accomodation>> hotels(String destination, DateTime date, int days) async {
     final client = Client();
-    final url = 'http://localhost:3000/planner/hotels?destination=${destination}&date=${DateFormat('yyyy-MM-dd').format(date)}';
+    final url = '${host}/planner/hotels?destination=${destination}&arrival=${DateFormat('yyyy-MM-dd').format(date)}&departure=${DateFormat('yyyy-MM-dd').format(date.add(Duration(days: 1)))}';
     final res = await client.get(Uri.encodeFull(url));
     if (res.statusCode == 200) {
       List body = json.decode(res.body);
