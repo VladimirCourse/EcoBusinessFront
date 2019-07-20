@@ -182,11 +182,13 @@ class Repository {
         try {
           result.add(Flight.fromJson(flight));
         } catch (ex) {
+          print(ex);
           return [];
         }
       }
       return result;
     } else {
+      print(res);
       return [];
     }
   }
